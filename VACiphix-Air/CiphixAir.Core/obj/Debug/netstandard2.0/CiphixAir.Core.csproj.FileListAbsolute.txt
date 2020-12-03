@@ -1,0 +1,9 @@
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\bin\Debug\netstandard2.0\CiphixAir.Core.deps.json
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\bin\Debug\netstandard2.0\CiphixAir.Core.dll
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.AssemblyInfoInputs.cache
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.AssemblyInfo.cs
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\bin\Debug\netstandard2.0\CiphixAir.Core.pdb
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.csproj.CoreCompileInputs.cache
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.dll
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.pdb
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\CiphixAir.Core\obj\Debug\netstandard2.0\CiphixAir.Core.csprojAssemblyReference.cache

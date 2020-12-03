@@ -1,0 +1,4 @@
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\VACiphix-Air\bin\Debug\netcoreapp3.1\VACiphix-Air.exe
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\VACiphix-Air\obj\Debug\netcoreapp3.1\VACiphix-Air.csprojAssemblyReference.cache
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\VACiphix-Air\obj\Debug\netcoreapp3.1\VACiphix-Air.AssemblyInfoInputs.cache
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\VACiphix-Air\obj\Debug\netcoreapp3.1\VACiphix-Air.AssemblyInfo.cs
