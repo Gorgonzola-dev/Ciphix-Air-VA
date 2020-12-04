@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CiphixAir.Core.Models.OpenWeatherMap
+namespace CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather
 {
-    public class Clouds
+    public class CurrentClouds
     {
         [JsonPropertyName("all")]
         public int All { get; set; }

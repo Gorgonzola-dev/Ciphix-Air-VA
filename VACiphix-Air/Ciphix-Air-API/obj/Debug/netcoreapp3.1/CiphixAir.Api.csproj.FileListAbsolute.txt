@@ -23,12 +23,15 @@ D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\Grpc.Core.Api.dll
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\linux\native\libgrpc_csharp_ext.x64.so
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\linux\native\libgrpc_csharp_ext.x86.so
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\osx\native\libgrpc_csharp_ext.x64.dylib
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\win\native\grpc_csharp_ext.x64.dll
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\runtimes\win\native\grpc_csharp_ext.x86.dll
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\CiphixAir.Core.dll
+D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\CiphixAir.Core.pdb
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.csprojAssemblyReference.cache
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.AssemblyInfoInputs.cache
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.AssemblyInfo.cs
@@ -41,6 +44,3 @@ D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.dll
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.pdb
 D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\obj\Debug\netcoreapp3.1\CiphixAir.Api.genruntimeconfig.cache
-D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\System.Text.Json.dll
-D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\CiphixAir.Core.dll
-D:\Work\Solution\Ciphix-Air-VA\VACiphix-Air\Ciphix-Air-API\bin\Debug\netcoreapp3.1\CiphixAir.Core.pdb

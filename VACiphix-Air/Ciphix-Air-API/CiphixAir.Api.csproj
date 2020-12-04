@@ -10,11 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\CiphixAir.Core\CiphixAir.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CiphixAir.Core\CiphixAir.Core.csproj" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 

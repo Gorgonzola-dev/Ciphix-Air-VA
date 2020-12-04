@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CiphixAir.Core.Models.OpenWeatherMap
+namespace CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather
 {
-    public class Wind
+    public class CurrentWind
     {
         [JsonPropertyName("speed")]
         public double Speed { get; set; }

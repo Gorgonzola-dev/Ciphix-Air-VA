@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CiphixAir.Core.Models.OpenWeatherMap
+namespace CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather
 {
-    public class Coordinates
+    public class CurrentWeatherCoordinates
     {
         [JsonPropertyName("lon")]
         public double Lon { get; set; }
