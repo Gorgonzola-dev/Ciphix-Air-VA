@@ -131,5 +131,8 @@ app.yml
 app.*.yml
 
 credentials.json
-VACiphix-Air/Ciphix-Air-API/bin/
-VACiphix-Air/Ciphix-Air-API/obj/
+VACiphix-Air/CiphixAir.Core/bin/**
+VACiphix-Air/CiphixAir.Core/obj/**
+VACiphix-Air/Ciphix-Air-API/bin/**
+VACiphix-Air/Ciphix-Air-API/obj/**
+VACiphix-Air/Ciphix-Air-API/Debug/**
