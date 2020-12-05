@@ -12,7 +12,6 @@ namespace CiphixAir.Core.Models.Converters
             {
                 var dateTime = DateTime.UtcNow;
 
-                var type = jsonDoc.RootElement.ValueKind;
                 if (jsonDoc.RootElement.ValueKind == JsonValueKind.String)
                 {
                     if (string.IsNullOrWhiteSpace(jsonDoc.RootElement.GetString()))

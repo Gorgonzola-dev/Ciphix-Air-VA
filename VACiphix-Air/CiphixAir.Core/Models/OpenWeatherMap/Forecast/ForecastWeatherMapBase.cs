@@ -11,6 +11,6 @@ namespace CiphixAir.Core.Models.OpenWeatherMap.Forecast
         public string timezone { get; set; }
         public int timezone_offset { get; set; }
         public List<ForecastWeatherHourly> hourly { get; set; }
+        public List<ForecastWeatherDaily> daily { get; set; }
     }
-
 }

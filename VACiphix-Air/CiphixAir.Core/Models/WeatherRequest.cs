@@ -22,5 +22,9 @@ namespace CiphixAir.Core.Models
         [JsonConverter(typeof(StringToBoolConverterIfStringIsDateTime))]
         [JsonPropertyName("DateTimeHasValue")]
         public bool DateTimeGiven { get; set; }
+
+        public IntentType Intent { get; set; }
+
+        public WeatherRequest PreviousWeatherRequest { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using CiphixAir.API.Models;
+using CiphixAir.Core.Helpers;
 using CiphixAir.Core.Models;
 using CiphixAir.Core.Models.OpenWeatherMap;
 using CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather;
@@ -23,53 +24,33 @@ namespace CiphixAir.Core.Services
             _client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/");
 
         }
-        public async Task<WeatherForecast> GetWeatherForecast(WeatherRequest weatherRequest)
-        {
-            if (weatherRequest.DateTimeGiven)
-            {
-                return await GetWeatherForecastForPeriod(weatherRequest);
-            }
 
-            return await GetWeatherForecastForNow(weatherRequest);
-        }
-
-        private async Task<WeatherForecast> GetWeatherForecastForNow(WeatherRequest weatherRequest)
+        public async Task<WeatherForecast> GetWeatherForecastForNow(WeatherRequest weatherRequest)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"weather?q={weatherRequest.City}&appid={_key}");
             var response = await _client.SendAsync(request);
-            var forecast = await BuildWeatherForecast(response, weatherRequest);
+            var forecast = await ForecastBuilder.BuildCurrentWeatherForecast(response, weatherRequest);
             return forecast;
         }
 
-        private async Task<WeatherForecast> GetWeatherForecastForPeriod(WeatherRequest weatherRequest)
+        public async Task<WeatherForecast> GetWeatherForecastForPeriod(WeatherRequest weatherRequest)
         {
             var weatherNow = await GetWeatherForecastForNow(weatherRequest);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"onecall?lat={weatherNow.Latitude}&lon={weatherNow.Longitude}&exclude=current,minutely,daily&appid={_key}");
+            var requestUri = GetRequestUriBasedOnRequestedTime(weatherRequest, weatherNow);
+            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
             var response = await _client.SendAsync(request);
-            var forecast = await BuildWeatherForecast(response, weatherNow);
+            var forecast = await ForecastBuilder.BuildFutureWeatherForecast(response, weatherNow);
             return forecast;
         }
 
-        private async Task<WeatherForecast> BuildWeatherForecast(HttpResponseMessage response, WeatherForecast weatherNow)
+        private string GetRequestUriBasedOnRequestedTime(WeatherRequest weatherRequest, WeatherForecast weatherNow)
         {
-            var obj = new ForecastWeatherMapBase();
-            using (var stream = await response.Content.ReadAsStreamAsync())
+            if (weatherRequest.DateTime.Subtract(DateTime.UtcNow).TotalHours < 48)
             {
-                obj = await JsonSerializer.DeserializeAsync<ForecastWeatherMapBase>(stream);
+                return $"onecall?lat={weatherNow.Latitude}&lon={weatherNow.Longitude}&exclude=current,minutely,daily&appid={_key}";
             }
-            return new WeatherForecast(obj, weatherNow);
-        }
 
-        private async Task<WeatherForecast> BuildWeatherForecast(HttpResponseMessage response,
-            WeatherRequest weatherRequest)
-        {
-            var obj = new CurrentWeatherMapBase();
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            {
-                obj = await JsonSerializer.DeserializeAsync<CurrentWeatherMapBase>(stream);
-            }
-            
-            return new WeatherForecast(obj, weatherRequest);
+            return $"onecall?lat={weatherNow.Latitude}&lon={weatherNow.Longitude}&exclude=current,minutely,hourly&appid={_key}";
         }
     }
 }

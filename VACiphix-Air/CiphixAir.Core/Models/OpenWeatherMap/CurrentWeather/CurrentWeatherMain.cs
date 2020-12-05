@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather
 {
@@ -6,7 +6,7 @@ namespace CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather
     {
 
         [JsonPropertyName("temp")]
-        public double Temp { get; set; }
+        public double Temperature { get; set; }
 
         [JsonPropertyName("feels_like")]
         public double FeelsLike { get; set; }
