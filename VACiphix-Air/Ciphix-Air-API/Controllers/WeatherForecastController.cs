@@ -21,13 +21,15 @@ namespace CiphixAir.API.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IConfiguration _configuration;
         private OpenWeatherMapService _weatherService;
+        private AviationStackFlightService _flightService;
 
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
         {
             _configuration = configuration;
             _logger = logger;
-            _weatherService = new OpenWeatherMapService(_configuration["OpenWeatherApiKey"]);
+            _weatherService = new OpenWeatherMapService(_configuration["OpenWeatherApiKey"], _configuration["GoogleTimezoneApiKey"]);
+            _flightService = new AviationStackFlightService(_configuration["AviationstackApiKey"]);
         }
         private static readonly JsonParser Parser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
 
@@ -48,7 +50,7 @@ namespace CiphixAir.API.Controllers
             {
                 return PayLoadBuilder.BuildGoogleErrorResponse();
             }
-            var weather = new WeatherForecast();
+            WeatherForecast weather;
             WeatherRequest originalRequest;
             switch (weatherRequest.Intent)
             {
@@ -56,8 +58,24 @@ namespace CiphixAir.API.Controllers
                 case IntentType.LocationGivenAfterWeatherRequestNoDateTime:
                     weather = await _weatherService.GetWeatherForecastForNow(weatherRequest);
                     break;
+                case IntentType.OnlyFlightGivenAffirmationWeatherDesired:
                 case IntentType.GetWeatherByFlight:
-                    break;
+                    if (weatherRequest.Intent == IntentType.OnlyFlightGivenAffirmationWeatherDesired)
+                    {
+                        originalRequest = JsonSerializer.Deserialize<WeatherRequest>(request.QueryResult.OutputContexts[0].Parameters
+                            .ToString());
+                        weatherRequest.FlightProvider = originalRequest.FlightProvider;
+                        weatherRequest.ForFlight = originalRequest.ForFlight;
+                    }
+                    var flight = await _flightService.GetFlightData(weatherRequest);
+                    if (flight == null)
+                    {
+                        return PayLoadBuilder.BuildGoogleErrorResponse(); // TODO: Add more error responses
+                    }
+                    //weatherList always contains 2 weatherForecasts, the first is for Departure, the second for Arrival
+                    var weatherList = await _weatherService.GetWeatherForecastByFlight(flight, weatherRequest);
+                    var byFlightResponse = PayLoadBuilder.BuildGoogleResponse(weatherList);
+                    return byFlightResponse;
                 case IntentType.GetWeatherForDateTimeAndCity:
                 case IntentType.LocationGivenAfterWeatherRequestWithDateTime:
                     weather = await _weatherService.GetWeatherForecastForPeriod(weatherRequest);

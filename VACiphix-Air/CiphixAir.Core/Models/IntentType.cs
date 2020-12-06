@@ -7,6 +7,7 @@
         GetWeatherForDateTimeAndCity,
         LocationGivenAfterWeatherRequestWithPreviousDateTime,
         LocationGivenAfterWeatherRequestNoDateTime,
-        LocationGivenAfterWeatherRequestWithDateTime
+        LocationGivenAfterWeatherRequestWithDateTime,
+        OnlyFlightGivenAffirmationWeatherDesired
     }
 }

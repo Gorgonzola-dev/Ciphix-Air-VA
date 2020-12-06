@@ -13,15 +13,11 @@ namespace CiphixAir.Core.Models
         [JsonPropertyName("date-time")]
         public DateTime DateTime { get; set; } = System.DateTime.Now;       
         
-        [JsonPropertyName("time-period")]
-        public string TimePeriod { get; set; }
+        [JsonPropertyName("flightNumber")]
+        public int ForFlight { get; set; }
 
-        [JsonPropertyName("forFlight")]
-        public string ForFlight { get; set; }
-
-        [JsonConverter(typeof(StringToBoolConverterIfStringIsDateTime))]
-        [JsonPropertyName("DateTimeHasValue")]
-        public bool DateTimeGiven { get; set; }
+        [JsonPropertyName("airline")]
+        public string FlightProvider { get; set; }
 
         public IntentType Intent { get; set; }
 
