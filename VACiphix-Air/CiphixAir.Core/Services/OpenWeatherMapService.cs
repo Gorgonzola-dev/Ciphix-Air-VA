@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using CiphixAir.API.Models;
 using CiphixAir.Core.Helpers;
 using CiphixAir.Core.Models;
-using CiphixAir.Core.Models.OpenWeatherMap;
-using CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather;
-using CiphixAir.Core.Models.OpenWeatherMap.Forecast;
 
 namespace CiphixAir.Core.Services
 {
@@ -84,45 +78,5 @@ namespace CiphixAir.Core.Services
 
             return weatherList;
         }
-    }
-
-    public class GoogleTimeZoneService
-    {
-        private readonly string _key;
-        private readonly HttpClient _client;
-        public GoogleTimeZoneService(string key)
-        {
-            _key = key;
-            var timezoneUri = new Uri("https://maps.googleapis.com/maps/api/timezone/json");
-            _client = new HttpClient();
-            _client.BaseAddress = timezoneUri;
-        }
-
-        public async Task<GoogleTimeZone> GetTimeZoneByWeatherForeCastAsync(WeatherForecast arrival)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"?location={arrival.Latitude},{arrival.Longitude}key={_key}");
-            var response = await _client.SendAsync(request);
-            var timeZone = new GoogleTimeZone();
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            {
-                timeZone = await JsonSerializer.DeserializeAsync<GoogleTimeZone>(stream);
-            }
-
-            return timeZone;
-        }
-    }
-
-    public class GoogleTimeZone
-    {
-        [JsonPropertyName("dstOffset")]
-        public int DayLightSavingOffset { get; set; }
-        [JsonPropertyName("rawOffset")]
-        public int TimezoneOffset { get; set; }
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
-        [JsonPropertyName("timeZoneId")]
-        public string TimezoneId { get; set; }
-        [JsonPropertyName("timeZoneName")]
-        public string TimezoneName { get; set; }
     }
 }
