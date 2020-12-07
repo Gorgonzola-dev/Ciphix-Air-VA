@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CiphixAir.API.Controllers;
 using CiphixAir.API.Models;
 using Google.Cloud.Dialogflow.V2;
 using Google.Protobuf.WellKnownTypes;
@@ -47,21 +48,30 @@ namespace CiphixAir.API.Helpers
             return response;
         }
 
-        public static WebhookResponse BuildGoogleErrorResponse()
+        public static WebhookResponse BuildGoogleErrorResponse(ErrorMessage errorMessage)
         {
             var response = new WebhookResponse();
             var message = new Message();
             var text = new Text(); //You have to build up the message & text separately to prevent a NullRefException
-            text.Text_.Add(BuildFulfillmentErrorText());
+            text.Text_.Add(BuildFulfillmentErrorText(errorMessage));
             message.Text = text;
             response.FulfillmentMessages.Add(message);
             response.FulfillmentText = response.FulfillmentMessages.First().Text.Text_.First(); //Google Documentation suggests using FulfillmentMessages.Text.Text_ for returning the Message but this results in an empty response in the DialogFlow, therefor this workaround
             return response;
         }
 
-        private static string BuildFulfillmentErrorText()
+        private static string BuildFulfillmentErrorText(ErrorMessage errorMessage)
         {
-            return "The current version sadly doesn't allow for Forecasts further than 2 days away";
+            switch (errorMessage)
+            {
+                case ErrorMessage.RequestedDateOutOfRange:
+                    return "The current version sadly doesn't allow for Forecasts further than 7 days away";
+                case ErrorMessage.NoFlightDataFound:
+                    return "No Flight data was found for the requested Flight";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(errorMessage), errorMessage, null);
+            }
+            
         }
 
 

@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace CiphixAir.Core.Models.Converters
 {
+    //Unused, using different Intents allowed us to not need this, keeping it here for now to show what i did before
     public class StringToBoolConverterIfStringIsDateTime : JsonConverter<bool>
     {
         public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

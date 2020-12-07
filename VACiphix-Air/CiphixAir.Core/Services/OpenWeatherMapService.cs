@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CiphixAir.API.Models;
 using CiphixAir.Core.Helpers;
 using CiphixAir.Core.Models;
+using CiphixAir.Core.Models.Flightdata;
 
 namespace CiphixAir.Core.Services
 {

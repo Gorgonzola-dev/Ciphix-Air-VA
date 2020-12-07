@@ -1,4 +1,4 @@
-﻿namespace CiphixAir.Core.Services
+﻿namespace CiphixAir.Core.Models.Flightdata
 {
     public class FlightData
     {

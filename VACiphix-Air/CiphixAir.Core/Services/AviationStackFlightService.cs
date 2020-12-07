@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CiphixAir.Core.Models;
 using CiphixAir.Core.Models.AviationStack;
+using CiphixAir.Core.Models.Flightdata;
 
 namespace CiphixAir.Core.Services
 {

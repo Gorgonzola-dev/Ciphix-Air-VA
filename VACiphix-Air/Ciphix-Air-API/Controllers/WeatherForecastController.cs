@@ -48,7 +48,7 @@ namespace CiphixAir.API.Controllers
             weatherRequest.Intent = Enum.Parse<IntentType>(request.QueryResult.Intent.DisplayName);
             if (weatherRequest.DateTime.Subtract(DateTime.UtcNow).TotalHours > 168)
             {
-                return PayLoadBuilder.BuildGoogleErrorResponse();
+                return PayLoadBuilder.BuildGoogleErrorResponse(ErrorMessage.RequestedDateOutOfRange);
             }
             WeatherForecast weather;
             WeatherRequest originalRequest;
@@ -70,7 +70,7 @@ namespace CiphixAir.API.Controllers
                     var flight = await _flightService.GetFlightData(weatherRequest);
                     if (flight == null)
                     {
-                        return PayLoadBuilder.BuildGoogleErrorResponse(); // TODO: Add more error responses
+                        return PayLoadBuilder.BuildGoogleErrorResponse(ErrorMessage.NoFlightDataFound);
                     }
                     //weatherList always contains 2 weatherForecasts, the first is for Departure, the second for Arrival
                     var weatherList = await _weatherService.GetWeatherForecastByFlight(flight, weatherRequest);
@@ -93,6 +93,7 @@ namespace CiphixAir.API.Controllers
 
             return response;
         }
-    }
 
+        
+    }
 }

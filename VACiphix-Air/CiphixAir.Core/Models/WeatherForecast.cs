@@ -2,9 +2,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using CiphixAir.Core.Models;
-using CiphixAir.Core.Models.OpenWeatherMap;
 using CiphixAir.Core.Models.OpenWeatherMap.CurrentWeather;
-using CiphixAir.Core.Models.OpenWeatherMap.Forecast;
 
 namespace CiphixAir.API.Models
 {

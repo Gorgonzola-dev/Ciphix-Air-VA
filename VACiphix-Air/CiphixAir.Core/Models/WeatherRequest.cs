@@ -11,7 +11,7 @@ namespace CiphixAir.Core.Models
 
         [JsonConverter(typeof(StringToDateTimeConverter))]
         [JsonPropertyName("date-time")]
-        public DateTime DateTime { get; set; } = System.DateTime.Now;       
+        public DateTime DateTime { get; set; } = DateTime.Now;       
         
         [JsonPropertyName("flightNumber")]
         public int ForFlight { get; set; }

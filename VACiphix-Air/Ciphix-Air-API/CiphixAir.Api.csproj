@@ -13,9 +13,5 @@
     <ProjectReference Include="..\CiphixAir.Core\CiphixAir.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 
 </Project>

@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CiphixAir.API.Models;
+using CiphixAir.Core.Models;
 
 namespace CiphixAir.Core.Services
 {

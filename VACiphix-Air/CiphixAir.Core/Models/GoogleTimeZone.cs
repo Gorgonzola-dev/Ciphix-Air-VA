@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CiphixAir.Core.Services
+namespace CiphixAir.Core.Models
 {
     public class GoogleTimeZone
     {
