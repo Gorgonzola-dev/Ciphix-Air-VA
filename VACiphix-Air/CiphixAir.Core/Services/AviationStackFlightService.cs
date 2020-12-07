@@ -21,7 +21,7 @@ namespace CiphixAir.Core.Services
             _client.BaseAddress = uri;
         }
 
-        public async Task<FlightData> GetFlightData(WeatherRequest weatherRequestForFlight)
+        public async Task<FlightData> GetFlightDataAsync(WeatherRequest weatherRequestForFlight)
         {
             try
             {
@@ -68,8 +68,8 @@ namespace CiphixAir.Core.Services
             var departureCity = v.Match(aviationFlightData.AviationFlightDeparture.timezone).Value.Replace('_', ' ');
             var arrivalCity = v.Match(aviationFlightData.AviationFlightArrival.timezone).Value.Replace('_', ' ');
 
-            flightData.Departure.City = departureCity;
-            flightData.Arrival.City = arrivalCity;
+            flightData.Departure.City = departureCity; //This city is not accurate and more of an approximation because of API limits
+            flightData.Arrival.City = arrivalCity; //This city is not accurate and more of an approximation because of API limits
 
             return flightData;
         }

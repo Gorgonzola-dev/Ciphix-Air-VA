@@ -23,7 +23,7 @@ namespace CiphixAir.Core.Services
 
         }
 
-        public async Task<WeatherForecast> GetWeatherForecastForNow(WeatherRequest weatherRequest)
+        public async Task<WeatherForecast> GetWeatherForecastForNowAsync(WeatherRequest weatherRequest)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"weather?q={weatherRequest.City}&appid={_key}");
             var response = await _client.SendAsync(request);
@@ -31,9 +31,9 @@ namespace CiphixAir.Core.Services
             return forecast;
         }
 
-        public async Task<WeatherForecast> GetWeatherForecastForPeriod(WeatherRequest weatherRequest)
+        public async Task<WeatherForecast> GetWeatherForecastForPeriodAsync(WeatherRequest weatherRequest)
         {
-            var weatherNow = await GetWeatherForecastForNow(weatherRequest);
+            var weatherNow = await GetWeatherForecastForNowAsync(weatherRequest);
             var requestUri = GetRequestUriBasedOnRequestedTime(weatherRequest, weatherNow);
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
             var response = await _client.SendAsync(request);
@@ -51,14 +51,14 @@ namespace CiphixAir.Core.Services
             return $"onecall?lat={weatherNow.Latitude}&lon={weatherNow.Longitude}&exclude=current,minutely,hourly&appid={_key}";
         }
 
-        public async Task<List<WeatherForecast>> GetWeatherForecastByFlight(FlightData flight, WeatherRequest weatherRequest)
+        public async Task<List<WeatherForecast>> GetWeatherForecastByFlightAsync(FlightData flight, WeatherRequest weatherRequest)
         {
             var requestForDeparture= new WeatherRequest();
             requestForDeparture.City = flight.Departure.City;
             var requestForArrival= new WeatherRequest();
             requestForArrival.City = flight.Arrival.City;
-            var arrival = await GetWeatherForecastForNow(requestForArrival);
-            var departure= await GetWeatherForecastForNow(requestForArrival);
+            var arrival = await GetWeatherForecastForNowAsync(requestForArrival);
+            var departure= await GetWeatherForecastForNowAsync(requestForArrival);
             var timezoneService = new GoogleTimeZoneService(_timezoneKey);
 
             var arrivalTimezone = await timezoneService.GetTimeZoneByWeatherForeCastAsync(arrival);
@@ -71,8 +71,8 @@ namespace CiphixAir.Core.Services
             requestForDeparture.DateTime = flight.Departure.DateTime.AddSeconds(departureTimezone.TimezoneOffset);
             requestForArrival.DateTime = flight.Arrival.DateTime.AddSeconds(arrivalTimezone.TimezoneOffset);
             
-            var weatherForDeparture= await GetWeatherForecastForPeriod(requestForDeparture);
-            var weatherForArrival= await GetWeatherForecastForPeriod(requestForArrival);
+            var weatherForDeparture= await GetWeatherForecastForPeriodAsync(requestForDeparture);
+            var weatherForArrival= await GetWeatherForecastForPeriodAsync(requestForArrival);
 
             weatherList.Add(weatherForDeparture);
             weatherList.Add(weatherForArrival);

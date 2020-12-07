@@ -56,7 +56,7 @@ namespace CiphixAir.API.Controllers
             {
                 case IntentType.GetWeatherForLocation:
                 case IntentType.LocationGivenAfterWeatherRequestNoDateTime:
-                    weather = await _weatherService.GetWeatherForecastForNow(weatherRequest);
+                    weather = await _weatherService.GetWeatherForecastForNowAsync(weatherRequest);
                     break;
                 case IntentType.OnlyFlightGivenAffirmationWeatherDesired:
                 case IntentType.GetWeatherByFlight:
@@ -67,24 +67,24 @@ namespace CiphixAir.API.Controllers
                         weatherRequest.FlightProvider = originalRequest.FlightProvider;
                         weatherRequest.ForFlight = originalRequest.ForFlight;
                     }
-                    var flight = await _flightService.GetFlightData(weatherRequest);
+                    var flight = await _flightService.GetFlightDataAsync(weatherRequest);
                     if (flight == null)
                     {
                         return PayLoadBuilder.BuildGoogleErrorResponse(ErrorMessage.NoFlightDataFound);
                     }
                     //weatherList always contains 2 weatherForecasts, the first is for Departure, the second for Arrival
-                    var weatherList = await _weatherService.GetWeatherForecastByFlight(flight, weatherRequest);
+                    var weatherList = await _weatherService.GetWeatherForecastByFlightAsync(flight, weatherRequest);
                     var byFlightResponse = PayLoadBuilder.BuildGoogleResponse(weatherList);
                     return byFlightResponse;
                 case IntentType.GetWeatherForDateTimeAndCity:
                 case IntentType.LocationGivenAfterWeatherRequestWithDateTime:
-                    weather = await _weatherService.GetWeatherForecastForPeriod(weatherRequest);
+                    weather = await _weatherService.GetWeatherForecastForPeriodAsync(weatherRequest);
                     break;
                 case IntentType.LocationGivenAfterWeatherRequestWithPreviousDateTime:
                     originalRequest = JsonSerializer.Deserialize<WeatherRequest>(request.QueryResult.OutputContexts[0].Parameters
                         .ToString());
                     weatherRequest.DateTime = originalRequest.DateTime;
-                    weather = await _weatherService.GetWeatherForecastForPeriod(weatherRequest);
+                    weather = await _weatherService.GetWeatherForecastForPeriodAsync(weatherRequest);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
